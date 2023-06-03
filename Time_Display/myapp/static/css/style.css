@@ -1,0 +1,17 @@
+
+header{ 
+    border: 3px solid rgb(4, 26, 93);
+    text-align: center;
+    width: 30%;
+    margin: 2em auto;
+    color: rgb(42, 76, 0);
+    
+}
+main {
+    border: 3px solid rgb(37, 202, 11); 
+    width: 20%;
+    text-align: center;
+    margin: auto;
+    font-size: 30px;
+    color: blueviolet;
+} 
