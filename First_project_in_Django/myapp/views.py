@@ -1,5 +1,5 @@
 from django.shortcuts import render , HttpResponse ,redirect    
-
+from django.http import JsonResponse
 def index(request):
     return redirect("/blogs") 
 
@@ -21,7 +21,8 @@ def edit(request, number):
 def destroy(request,number):
     return redirect ('/') 
 
-def json(request): 
-    return JsonResponse({"response": "JSON response from redirected_method", "status": True})
+def json_method(request): 
+    return JsonResponse({"title": "The first blod"}, 
+    {'content': 'JSON response from redirected_method'})
 
 
