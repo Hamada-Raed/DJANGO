@@ -1,0 +1,22 @@
+body{
+    background-color: blanchedalmond;
+}
+h1 {
+    text-align: center;
+    color: rgb(216, 78, 3); 
+    border: 1px solid black; 
+    border-radius: 20px;
+} 
+.p1{
+    font-size: larger;
+    color: blue;
+}
+
+.p2 {
+    text-align: end;
+    color: blueviolet;
+}
+.p3 {
+    text-align: center;
+    color: brown;
+} 
