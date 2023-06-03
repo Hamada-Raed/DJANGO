@@ -1,4 +1,4 @@
-from django.shortcuts import render , HttpResponse ,redirect
+from django.shortcuts import render , HttpResponse ,redirect    
 
 def index(request):
     return redirect("/blogs") 
@@ -19,6 +19,9 @@ def edit(request, number):
     return HttpResponse (f"placeholder to edit blog {number}") 
 
 def destroy(request,number):
-    return redirect ('/')
+    return redirect ('/') 
+
+def json(request): 
+    return JsonResponse({"response": "JSON response from redirected_method", "status": True})
 
 
