@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse , redirect
 def index(request):
     return render(request, "index.html" )
 
@@ -12,3 +12,6 @@ def create_user(request):
     	"email_on_template" : email_from_form
     }
     return render(request,"show.html",context)
+
+def redirect_page(request): 
+    return redirect ('')
