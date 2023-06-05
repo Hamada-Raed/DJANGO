@@ -1,0 +1,22 @@
+body {
+    background-color:seagreen;
+} 
+
+form {
+    border: 2px solid black; 
+    width: 30%;
+    margin: 3em auto;
+    padding: 20px;
+    color: wheat
+} 
+
+form div {
+    padding: 10px;
+} 
+button{
+    padding: 20px; 
+    width: 100px;
+    background-color: blueviolet;
+    color: white;
+    margin: 10px;
+}
