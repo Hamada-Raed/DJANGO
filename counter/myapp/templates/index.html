@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        {{counter}}
+        <form action="delet" , method="post">
+            {% csrf_token %}
+            <button >Delete Session</button>
+        </form>
+        <form action="addtwo", method="post">
+            {% csrf_token %} 
+            <button>add 2 visits</button>
+        </form>
+        <form action="reset" , method="post">
+            {% csrf_token %}
+            <button>reset</button>
+        </form>
+        <form action="addnum", method="post">
+            {% csrf_token %}
+            <input type="text" name="num" id="num" placeholder="Please write a number">
+            <button>Add</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
