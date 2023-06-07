@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Ninja Gold</title>
+</head>
+
+<body>
+    <h1>Befor you start a game write how much do you want to earn and how many times you want to achived your goal</h1>
+    <form action="conditions" method="post">
+        {% csrf_token %}
+        <div>How much do you want to earn <input type="text" name="number"></div>
+        <button>Submit</button>
+    </form>
+    <h2>Your Gold: {{gold_money}}</h2>
+    <div class="d-flex p-2 justify-content-between">
+        <form action="process_money" , method="post" class="border border-dark rounded">
+            {% csrf_token %}
+            <input type="hidden" name="money" value="farm">
+            <h2>Farm</h2>
+            <h3>(earns 10-20 gold)</h3>
+            <input type="submit" name="get_gold" value="earn">
+        </form>
+        <form action="process_money" , method="post" class="border border-dark rounded">
+            {% csrf_token %}
+            <input type="hidden" name="money" value="cave">
+            <h2>Cave</h2>
+            <h3>(earns 10-20 gold)</h3>
+            <input type="submit" name="get_gold" value="earn">
+        </form>
+        <form action="process_money" , method="post" class="border border-dark rounded">
+            {% csrf_token %}
+            <input type="hidden" name="money" value="house">
+            <h2>House</h2>
+            <h3>(earns 10-20 gold)</h3>
+            <input type="submit" name="get_gold" value="earn">
+        </form>
+        <form action="process_money" , method="post" class="border border-dark rounded">
+            {% csrf_token %}
+            <input type="hidden" name="money" value="quest">
+            <h2>Quest</h2>
+            <h3>(earns 0-50 gold)</h3>
+            <input type="submit" name="get_gold" value="earn">
+        </form>
+    </div>
+    <div>
+        <h3>Here is a massage of the game {{massage}}</h3>
+    </div>
+    <form action="delet" method="post">
+        {% csrf_token %}
+        <button type="sbumit" name="delet">Delet</button>
+    </form>
+</body>
+
+</html>
