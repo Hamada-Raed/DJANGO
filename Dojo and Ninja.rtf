@@ -25,20 +25,22 @@
 \
 4.) Create 3 ninjas that belong to the first dojo you created.\
     j = Dojo.objects.get(city="Jenin")\
-    ninjsa.objects.create(first_name=\'93Hamada\'94, last_name=\'93Raed\'94, dojo=j)\
-    ninjas.objects.create(first_name="Linda", last_name=\'93Tammer\'94, dojo=j)\
-    ninjas.objects.create(first_name=\'93Khaill\'94, last_name=\'93Saad\'94, dojo=j)\
+    ninjsa.objects.create(first_name=\'93Hamada\'94, last_name=\'93Raed\'94, dojos=j)\
+    ninjas.objects.create(first_name="Linda", last_name=\'93Tammer\'94, dojos=j)\
+    ninjas.objects.create(first_name=\'93Khaill\'94, last_name=\'93Saad\'94, dojos=j)\
 \
 5.) Create 3 more ninjas and have them belong to the second dojo you created.\
     k = Dojo.objects.get(city="Nablus")\
-    ninjas.objects.create(first_name=\'93Mohammad\'94, last_name=\'93Their\'94, dojo=k)\
-    ninjas.objects.create(first_name=\'93Farah\'94, last_name=\'93Nassar\'94, dojo=k)\
-    ninjas.objects.create(first_name=\'93Nehall\'94, last_name=\'93Imad\'94, dojo=k)\
+    ninjas.objects.create(first_name=\'93Mohammad\'94, last_name=\'93Their\'94, dojos=k)\
+    ninjas.objects.create(first_name=\'93Farah\'94, last_name=\'93Nassar\'94, dojos=k)\
+    ninjas.objects.create(first_name=\'93Nehall\'94, last_name=\'93Imad\'94, dojos=k)\
 \
 \
 \
 6.) Be able to retrieve all ninjas that belong to the first Dojo.\
-    ninjas.objects.filter(dojo=j).values()\
+    ninjas.objects.filter(dojos=j).values()\
 \
 7) Be able to retrieve all ninjas that belong to the last Dojo.\
-    ninjas.objects.filter(dojo=l).values() }
+    ninjas.objects.filter(dojos=l).values() \
+8) create a new dojo after we added new field in Dojo class \
+	Dojo.objects.create(name="CodingDojo", city=\'93Hebron\'94, state="CA\'94, dese=\'91This is a good bootcamp\'92) }

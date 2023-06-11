@@ -4,6 +4,7 @@ class Dojo(models.Model):
     name = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     status = models.CharField(max_length=255)
+    desc = models.TextField(defult = 'old dojo')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 class ninjas(models.Model):
