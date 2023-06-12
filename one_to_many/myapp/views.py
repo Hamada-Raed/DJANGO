@@ -1,6 +1,9 @@
 from django.shortcuts import render
-
+from .models import Author , Book
 def index(request):
-    for book in new_authot.books.all():
-        print (book.title)
+    new_author = Author.objects.create(name ='Hamada')
+    contant = {
+        'author_in_template' : new_author.name
+    }
+    return render (request ,'index.html', contant)
   
