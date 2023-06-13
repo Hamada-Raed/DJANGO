@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<style>
+    .continer {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Add a Book</h1>
+    <div class="continer">
+        <div>
+            <form action="add_book" , method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div>
+                    <label for="desc">Descrption</label>
+                    <input type="text" name="desc" id="desc">
+                </div>
+                <button>Add</button>
+                <form action="delete_book" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label for="del">Delete</label>
+                        <input type="text" name="id" id="del">
+                    </div>
+                    <button>Delete</button>
+                </form>
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td><a href="book_info/{{book_id}}">View</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <h2><a href="author">Move to Author page</a></h2>
+    </div>
+
+</body>
+
+</html>
