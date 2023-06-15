@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>TV Shwos</title>
+</head>
+
+<body>
+
+    <h1>All shows</h1>
+    <table class="table table-striped table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Action</th>
+        </tr>
+        {% for show in shows%}
+        <tr>
+            <td>{{show.id}}</td>
+            <td>{{show.title}}</td>
+            <td>{{show.network}}</td>
+            <td>{{show.desc}}</td>
+            <td><a href="show">Show</a> | <a href="edit">Edit</a> | <a href="delete">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    <a href="{% url 'create_show' %}">add a new show</a>
+</body>
+
+</html>
