@@ -25,7 +25,6 @@ def adding_n(request):
 
     return redirect('/')
 
-
 def deleteDojo(request):
     dell = Dojo.objects.get(id=request.POST['delete']).delete()
 
