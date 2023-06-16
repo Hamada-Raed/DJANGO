@@ -19,8 +19,15 @@
         <li>{{author.first_name}} {{author.last_name}}</li>
         {% endfor %}
     </ul>
-
-
+    <form action="/add_author_to_book/{{books.id}}" method="post">
+        {% csrf_token %}
+        <select name="auth" id="auth">
+            {% for author in all_authors%}
+            <option value="{{author.id}}">{{author.first_name}}</option>
+            {%endfor%}
+        </select>
+        <button>add</button>
+    </form>
 
 
 </body>

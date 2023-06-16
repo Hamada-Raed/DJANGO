@@ -21,10 +21,21 @@ def add_show(request):
 def GoBack(request):
     return redirect('/') 
 
-def show_page(request):
+def show_page(request, show_id):
     context = {
-        "details" : show.objects.get(id=show.id).show.all()
+        "shows" : show.objects.get(id=show_id),
     }
     return render(request, 'show.html', context)
 
-    
+def edit_page(request, edit_id): 
+    context = {
+        "update" : show.objects.get(id=edit_id),  
+    }
+    return render (request, 'edit_page.html', context)
+
+def edit(request):
+    name = request.POST['title']
+    network = request.POST['network']
+    desc = request.POST['desc']
+    release_date = request.POST['release_date']
+    return redirect("/edit_page/<edit_id>")

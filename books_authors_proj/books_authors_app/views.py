@@ -41,3 +41,10 @@ def author_info(request, author_id):
         'all_books' : Book.objects.all(),
     }
     return render(request, "author_info.html", context)
+
+def add_author_to_book(request, books_id): 
+    author = request.POST['auth'] 
+    this_book = Book.objects.get(id= books_id)
+    this_book.books_authors.add(author)
+    return redirect('/')
+    
