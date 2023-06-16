@@ -1,5 +1,5 @@
 """
-WSGI config for tv_shows project.
+WSGI config for tvshow project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tv_shows.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tvshow.settings')
 
 application = get_wsgi_application()

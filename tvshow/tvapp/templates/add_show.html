@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Show</title>
+    <title>Add a show</title>
 </head>
 
 <body>
-
-    <h1>Add a new show!</h1>
-    <form action="{% url 'create_show' %}">
+    <h1>Add a new show</h1>
+    <form action="add_show" method="post">
+        {% csrf_token %}
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title">
@@ -20,17 +20,16 @@
             <label for="network">Network</label>
             <input type="text" name="network" id="network">
         </div>
-        <!-- <div>
-            <label for="release_date">Release Date</label>
-            <input type="date" name="release_date" id="release_date">
-        </div> -->
+        <div>
+            <input type="date" name="date" id="date">
+        </div>
         <div>
             <label for="desc">Description</label>
         </div>
         <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
         <div><button>Create</button></div>
     </form>
-
+    <a href="GoBack">Go Back</a>
 </body>
 
 </html>
