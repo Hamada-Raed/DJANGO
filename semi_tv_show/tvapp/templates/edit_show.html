@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit page</title>
+</head>
+
+<body>
+    <h1>Edit show {{shows.id}}</h1>
+    <form action="/edit/{{shows.id}}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="network">Network</label>
+            <input type="text" name="network" id="network">
+        </div>
+        <div>
+            <label for="release_date">Relaese Date</label>
+            <input type="date" name="release_date" id="release_date">
+        </div>
+        <div>
+            <label for="desc">Description</label>
+        </div>
+        <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+        <div><button>Update</button></div>
+    </form>
+    <a href="/display_show/{{shows.id}}">Go to Show</a>
+</body>
+
+</html>
