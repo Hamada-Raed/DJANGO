@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import show
+from django.contrib import messages
+
 def index(request):
     context = {
         'all_shows' : show.objects.all()
@@ -12,11 +14,17 @@ def show_page(request):
 
 # to add a new show
 def add(request):
-    show.objects.create(
-        title=request.POST['title'], 
-        network=request.POST['network'],
-        release_date=request.POST['release_date'], 
-        desc=request.POST['desc']
+    errors = show.objects.basic_validator(request.POST)
+    if len(errors) > 0: 
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/show_page')
+    else:
+        show.objects.create(
+            title=request.POST['title'], 
+            network=request.POST['network'],
+            release_date=request.POST['release_date'], 
+            desc=request.POST['desc']
         )
     return redirect("/")
 
