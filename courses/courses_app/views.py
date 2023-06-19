@@ -17,7 +17,6 @@ def add_course(request):
     else:
         Course.objects.create(
             name=request.POST['name'], 
-            desc=request.POST['desc'],
         )
         return redirect("/")
 

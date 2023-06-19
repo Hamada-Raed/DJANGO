@@ -12,7 +12,13 @@ class CourseManager(models.Manager):
 
 class Course(models.Model): 
     name = models.CharField(max_length=255)
-    desc = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = CourseManager()
+
+class Description(models.Model): 
+    text = models.TextField()
+    desc = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True) 
+
