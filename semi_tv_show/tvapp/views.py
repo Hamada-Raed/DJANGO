@@ -10,15 +10,26 @@ def index(request):
 
 # to display the page to add a show
 def show_page(request):
-    return render (request, 'add_show.html')
+    print ('hamada')
+    if 'name' not in request.session:
+        request.session['name'] = '' 
+    context = {
+        'Title' : request.session['name']
+    }
+    return render (request, 'add_show.html', context )
 
 # to add a new show
 def add(request):
+    
     errors = show.objects.basic_validator(request.POST)
     if len(errors) > 0: 
         for key, value in errors.items():
             messages.error(request, value)
+        if 'name' not in request.session:
+            request.session['name'] = request.POST['title']
         return redirect('/show_page')
+        
+
     else:
         show.objects.create(
             title=request.POST['title'], 

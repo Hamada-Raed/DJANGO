@@ -14,12 +14,8 @@
     <h3>Description: {{dell.desc}}</h3>
     <form action="/no/{{dell.id}}" method="post">
         {% csrf_token %}
-        <input type="submit" value="No">
-    </form>
-    <form action="/yes/{{dell.id}}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Yes, I want to delete this">
+        <input type="submit" name='no' value="No">
+        <input type="submit" name="no" value="Yes, I want to delete this">
     </form>
 </body>
-
 </html>

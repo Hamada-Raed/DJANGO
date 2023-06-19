@@ -9,9 +9,8 @@ class showManager(models.Manager):
             errors["title"] = "Title should be at least 2 characters"
         if len(postData['network']) < 2:
             errors["network"] = "Network should be at least 3 characters"
-        if len (postData['desc']) > 0:
-            if len(postData['desc']) < 10:
-                errors["desc"] = " Description should be at least 10 characters"
+        if len (postData['desc']) > 0 and len(postData['desc']) < 10: 
+            errors["desc"] = " Description should be at least 10 characters"
         if  postData['release_date'] < str(datetime.now()):
             errors['release_date'] = "Your input date is in the past" 
         return errors

@@ -26,12 +26,14 @@ def remove(request, course_id):
     }
     return render (request, 'remove.html', context)
 
-def no(request,course_id): 
-    return redirect('/')
+def no(request,course_id):
+    if request.POST['no'] == 'No': 
+        return redirect ('/')
+    elif request.POST['no'] == 'Yes, I want to delete this':
+        selected = Course.objects.get(id=course_id).delete()
+        return redirect ('/')
 
-def yes(request, course_id): 
-    selected = Course.objects.get(id=course_id).delete()
-    return redirect ('/')
+    
 
 
 
