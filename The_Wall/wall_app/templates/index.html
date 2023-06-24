@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Wall Login</title>
+</head>
+<style>
+    body {
+        background-color: aquamarine;
+    }
+
+    .contatiner {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+<body>
+    <div class="contatiner">
+
+        <div class="reg">
+            <table>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    Register now!
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" name="fname"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" name="lname"></td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="text" name="pword"></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm Password</td>
+                        <td><input type="password" name="confirm"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="register" value="Register"></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+        <div class="log">
+            <table>
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    Log in
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="email" name="pword"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="login" value="Log In"></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
