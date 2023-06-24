@@ -19,7 +19,7 @@ def register(request):
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()  
         print(pw_hash)
-        request.session['username'] = fname + " "+ lname
+        request.session['username'] = fname + " " + lname
         request.session['status']="Registered"
         User.objects.create(first_name=fname, last_name=lname,email=email, password=pw_hash)
     return redirect("/success")
