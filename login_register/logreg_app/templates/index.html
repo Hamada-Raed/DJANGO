@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN/REGISTRATION</title>
+</head>
+<style>
+    .continer {
+        display: flex;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+    }
+</style>
+
+<body>
+    <div class="continer">
+        <form action="register" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" name="fname"></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" name="lname"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Password Confirm: </td>
+                    <td><input type="text" name="password_confirm"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Register">
+        </form>
+        <form action="login" method="post">
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" name="password"></td>
+                </tr>
+            </table>
+            <input type="submit" value="LOGIN">
+        </form>
+    </div>
+    <div class="errors">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div style="text-align:right;"><a href="/logout">logout</a></div>
+    <h2>Success! Welcome, {{username}}</h2>
+    successfully {{status}}
+</body>
+
+</html>

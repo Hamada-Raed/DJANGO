@@ -5,8 +5,8 @@ import bcrypt
 
 
 class UserManager(models.Manager):
+    errors = {}
     def basic_validator(self, postData):
-        errors = {}
         # add keys and values to errors dictionary for each invalid field
         if  len(postData['fname']) < 2 or not postData['fname'].isalpha():
             errors["fname"] = "first name should be at least 2 chars and contains letters only"
@@ -16,9 +16,10 @@ class UserManager(models.Manager):
         if not EMAIL_REGEX.match(postData['email']):    # test whether a field matches the pattern            
             errors['email'] = "Invalid email address!"
         if  len(postData['password']) < 8 :    
-            errors['password'] = "THe password must be 8 characters minimum"
+            errors['password'] = "Password should be 8 charactor"
         if postData['password'] != postData['pwdconfirm']:
             errors['password'] = "Passwords are note the same"
+    
         return errors
 
     def login_validator(self, postData):
@@ -31,8 +32,7 @@ class UserManager(models.Manager):
             errors2["email2"] = "Email cannot be empty!"
         elif not EMAIL_REGEX.match(email2):
             errors2["email2"] = "Invalid Email Address!"
-        
-        elif not bcrypt.checkpw(password2.encode(), usr[1].password.encode()):
+        elif not bcrypt.checkpw(password2.encode(), usr[0].password.encode()):
             errors2["password2"] = "Incorrect password. Try again!"
             
         return errors2

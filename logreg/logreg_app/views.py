@@ -7,6 +7,7 @@ def index(request):
     return render(request, "index.html")
 
 def register(request):
+    print('register')
     errors = User.objects.basic_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
