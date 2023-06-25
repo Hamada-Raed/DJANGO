@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create new team</title>
+</head>
+
+<body>
+    <h1>New Team</h1>
+    <a href="/display">Dashboard</a>
+    <table>
+        <form action="create_team" method="post">
+            {% csrf_token%}
+            <tr>
+                <td>Team Name</td>
+                <td><input type="text" name="team_name"></td>
+            </tr>
+            <tr>
+                <td>Skill Level(1-5)</td>
+                <td><input type="text" name="skill_level"></td>
+            </tr>
+            <tr>
+                <td>Game Day</td>
+                <td><input type="text" name="game_day"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </form>
+    </table>
+    {% if messages %}
+    <ul style="color: red; list-style-type: none;">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
