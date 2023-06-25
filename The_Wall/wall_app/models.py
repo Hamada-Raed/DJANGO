@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.db import models
 import bcrypt
 
@@ -21,7 +22,7 @@ class UserManager(models.Manager):
         if User.objects.filter(email_address = postData['email']).exists():
             errors['email'] = "Email already exists."
         if User.objects.filter(password = postData['pword']).exists():
-            errors['pword'] = "Password already is use"
+            errors['pword'] = "Password already in use"
         if postData['confirm'] != postData['pword']:
             errors['confirm'] = "Confirmation password does not match password!"
         return errors
@@ -51,13 +52,13 @@ class User(models.Model):
 
 class Message(models.Model):
     message_text = models.TextField()
-    user = models.ForeignKey(User, related_name='messages',  on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name='messages', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Comment(models.Model):
     comment_text = models.TextField()
-    user = models.ForeignKey(User, related_name='comments',  on_delete = models.CASCADE)
-    message = models.ForeignKey(Message, related_name='comments',  on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name='comments', on_delete = models.CASCADE)
+    message = models.ForeignKey(Message, related_name='comments', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
