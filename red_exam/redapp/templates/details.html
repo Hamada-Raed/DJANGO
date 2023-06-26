@@ -8,11 +8,15 @@
 </head>
 
 <body>
-    <h1>{{teams.team_name}}</h1>
-    <h2>{{teams.skill_level}}</h2>
-    <h3>{{teams.game_day}}</h3>
+    <h1>{{courses.name}}</h1>
+    <h2>{{courses.day}}</h2>
+    <h3>{{courses.number}}</h3>
+    <h3>{{courses.desc}}</h3>
+    {% if user.id == courses.user.id%}
     <a href="/delete/{{teams.id}}">Delete</a>
     <a href="/edit_show/{{teams.id}}">Edit</a>
+    {% endif%}
+    <button><a href="/display">Dashboard</a></button>
 </body>
 
 </html>

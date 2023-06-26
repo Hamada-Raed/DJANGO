@@ -8,23 +8,37 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Display</title>
 </head>
+<style>
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
 
 <body>
-    <h1>Welcome {{username}}</h1>
-    <a href="/logout">Logout</a>
+    <div>
+        <h1>{{username}}</h1>
+        <a href="/logout">Logout</a>
+    </div>
     <table class="table table-dark">
         <tr>
-            <th>Team Name</th>
-            <th>Skill level(1-5)</th>
-            <th>Players</th>
-            <th>Game Day</th>
+            <th>Class Name</th>
+            <th>Instructor</th>
+            <th>Weekend</th>
+            <th>Price</th>
         </tr>
-        {% for team in teams%}
+        {% for course in courses%}
         <tr>
-            <td><a href="/details/{{team.id}}">{{team.team_name}}</a></td>
-            <td>{{team.skill_level}}</td>
-            <td>9</td>
-            <td>{{team.game_day}}</td>
+            <td><a href="/details/{{course.id}}">{{course.name}}</a>
+                <button>
+                    {% if user.id == courses.user.id %}
+                    <a href="/edit_show/{{course.id}}">Edit</a>
+                    {% endif %}
+                </button>
+            </td>
+            <td>{{course.Insturctor}}</td>
+            <td>{{course.day}}</td>
+            <td>{{course.number}}</td>
         </tr>
         {% endfor%}
     </table>
@@ -35,7 +49,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <button><a href="/create">Create New Team</a></button>
+    <button><a href="/create">Create New number</a></button>
 </body>
 
 </html>

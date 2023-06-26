@@ -30,7 +30,7 @@ def login(request):
 def display(request): 
     context = {
         'username' : request.session['username'],
-        'teams': Team.objects.all()
+        'courses': Course.objects.all()
     }
 
     return render(request, 'display.html', context) 
@@ -39,48 +39,65 @@ def logout(request):
     request.session.flush()
     return redirect('/')
 
-def dashborad(request): 
-    return render(request, 'dashborad.html')
+def cancel(request): 
+    return render(request, 'display.html')
 
 def create(request):
     return render(request, 'new.html')
 
-def create_team(request):
-    request.session['user_id'] = User.objects.last().id
-    print (request.session['user_id'])
-    Team.objects.create(
-        team_name = request.POST['team_name'], 
-        skill_level = request.POST['skill_level'], 
-        game_day = request.POST['game_day'],
-        user = User.objects.get(id=request.session['user_id']), 
-    )
-    return redirect('/display')
+def create_course(request):
+    errors = Course.objects.course_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/create')
+    else:
+        request.session['user_id'] = User.objects.last().id
+        print (request.session['user_id'])
+        Course.objects.create(
+            name = request.POST['name'], 
+            day = request.POST['day'], 
+            number = request.POST['number'],
+            desc =request.POST['desc'], 
+            Insturctor= request.POST['instructor'],
+            user = User.objects.get(id=request.session['user_id']), 
+        )
+        return redirect('/display')
 
-def details(request, team_id):
+def details(request, course_id):
     context = {
-        'teams' : Team.objects.get(id = team_id)
+        'courses' : Course.objects.get(id = course_id),
+        'user' : User.objects.all(),
     }
     return render(request, 'details.html', context)
 
-def delete(request, team_id):
-    dell = Team.objects.get(id = team_id)
+def delete(request, course_id):
+    dell = Course.objects.get(id = course_id)
     dell.delete() 
     return redirect('/display')
 
-def edit_show(request, team_id):
+def edit_show(request, course_id):
     context = {
-        'teams' : Team.objects.get(id=team_id) 
+        'courses' : Course.objects.get(id=course_id) 
     }
     return render(request,'delEdi.html',context)
 
-def edit(request, team_id):
-    selected = Team.objects.get(id=team_id)
-    selected.team_name = request.POST['team_name']
-    selected.skill_level = request.POST['skill_level']
-    selected.game_day = request.POST['game_day']
-    selected.save()
-    print('hi')
-    return redirect('/display')
+def edit(request, course_id): 
+    errors = Course.objects.course_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/edit_show/'+course_id)
+    else:
+        selected = Course.objects.get(id=course_id)
+        selected.name = request.POST['name']
+        selected.Insturctor = request.POST['insturctor']
+        selected.day = request.POST['day']
+        selected.number = request.POST['number']
+        selected.desc = request.POST['desc']
+        selected.save()
+        return redirect('/display')
+
 
 
 

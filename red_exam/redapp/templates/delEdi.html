@@ -6,30 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit</title>
 </head>
+<style>
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+</style>
 
 <body>
-    <h1>Edit Team</h1>
-    <a href="/display">Dashboard</a>
-    <table>
-        <form action="/edit/{{teams.id}}" method="post">
+    <div>
+        <h1>{{courses.name}}</h1>
+        <a href="/display">Dashboard</a>
+    </div>
+
+    <form action="/edit/{{courses.id}}" method="post">
+        <table>
             {% csrf_token%}
             <tr>
-                <td>Team Name</td>
-                <td><input type="text" name="team_name" value="{{teams.team_name}}"></td>
+                <td>Name</td>
+                <td><input type="text" name="name" value="{{courses.name}}"></td>
             </tr>
             <tr>
-                <td>Skill Level(1-5)</td>
-                <td><input type="text" name="skill_level"></td>
+                <td>Insturctor</td>
+                <td><input type="text" name="insturctor"></td>
             </tr>
             <tr>
-                <td>Game Day</td>
-                <td><input type="text" name="game_day"></td>
+                <td>Day of Week</td>
+                <td><input type="text" name="day"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit"></td>
+                <td>Drop-in-price</td>
+                <td><input type="number" name="number" min="0" value="{{courses.number }}"></td>
             </tr>
-        </form>
-    </table>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" name="desc" value="{{courses.desc}}"></td>
+            </tr>
+        </table>
+        <button><a href="/delete/{{courses.id}}">Delete</a></button>
+        <button><a href="/display">Cancel</a></button>
+        <input type="submit" value="Submit">
+    </form>
+    {% if messages %}
+    <ul style="color: red; list-style-type: none;">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
 </body>
 
 </html>

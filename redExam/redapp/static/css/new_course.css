@@ -1,0 +1,10 @@
+textarea{
+    height: 30px;
+}
+.buttons{
+    margin: 50px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

@@ -6,30 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>create new team</title>
 </head>
+<style>
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+</style>
 
 <body>
-    <h1>New Team</h1>
-    <a href="/display">Dashboard</a>
-    <table>
-        <form action="create_team" method="post">
+    <div>
+        <h1>Create a Course</h1>
+        <a href="/display">Dashboard</a>
+    </div>
+
+    <form action="create_course" method="post">
+        <table>
             {% csrf_token%}
             <tr>
-                <td>Team Name</td>
-                <td><input type="text" name="team_name"></td>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
             </tr>
             <tr>
-                <td>Skill Level(1-5)</td>
-                <td><input type="text" name="skill_level"></td>
+                <td>Instructor</td>
+                <td><input type="text" name="instructor"></td>
             </tr>
             <tr>
-                <td>Game Day</td>
-                <td><input type="text" name="game_day"></td>
+                <td>Day of Week</td>
+                <td><input type="text" name="day" value="Wednesday"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit"></td>
+                <td>Drop-in-price</td>
+                <td><input type="number" min="0" name="number"></td>
             </tr>
-        </form>
-    </table>
+            <tr>
+                <td>Description</td>
+                <td><textarea type="text" name="desc"></textarea></td>
+            </tr>
+        </table>
+        <button><a href="/display">Cancel</a></button>
+        <input type="submit" value="Submit">
+    </form>
+
     {% if messages %}
     <ul style="color: red; list-style-type: none;">
         {% for message in messages %}

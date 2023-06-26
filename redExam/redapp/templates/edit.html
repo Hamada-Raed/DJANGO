@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/new_course.css' %}">
+    <title>Create a course</title>
+</head>
+
+<body>
+    <h1>{{course.name}}</h1>
+    <form action="/add_course" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name Couses:</td>
+                <td><input type="text" name="name_course" value="{{course.name}}"></td>
+            </tr>
+            <tr>
+                <td>Insturctor</td>
+                <td><input type="text" name="insturctor"></td>
+            </tr>
+            <tr>
+                <td>Day of weekend:</td>
+                <td><input type="text" name="day"></td>
+            </tr>
+            <tr>
+                <td>Drop-in-price:</td>
+                <td><input type="number" min="0" name="number" value="{{course.number}}"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><textarea name="desc" cols="30" rows="10"></textarea></td>
+            </tr>
+        </table>
+        <div class="buttons"> <button><a href="/delete/{{course.id}}">Delete</a></button> <button><a
+                    href="/cancel">Cancel</a></button> <button><a href="/add_course">Submit</a></button></div>
+    </form>
+    <div id="error_messages">
+        {% if messages %}
+        <ul style="color: red;">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

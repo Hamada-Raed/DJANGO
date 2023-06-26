@@ -1,0 +1,10 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+#new_course{
+    text-decoration: none;
+    color: black;
+}

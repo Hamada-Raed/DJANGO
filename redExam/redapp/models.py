@@ -34,14 +34,19 @@ class User(models.Model):
     objects = UserManager()
 
 class CourseManager(models.Manager): 
+    errors = {}
     def course_validator(self, postData):
-        errors = {}
-        if len(postData['name']) < 1: 
-            errors['name'] = 'Name is required'
+        if len(postData['name_course']) < 1: 
+            errors['name'] = 'Name should be provided'
+        if len(postData['name']) < 2: 
+            errors['name'] = 'Name should be at least 2 charactor'
         if len(postData['day']) < 1: 
-            errors['day'] = "Day is required"
+            errors['day'] = "Day should be provided"
+        if postData['number'] < 0: 
+            errors['number'] = "Number should be a positive"
         if len(postData['desc']) < 1: 
             errors['desc'] = "Description should be porvided"
+        
         return errors
 
 class Course(models.Model): 

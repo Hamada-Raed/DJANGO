@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/classes.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Classes</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>{{user}}</h1>
+        <a href="logout">Logout</a>
+    </header>
+    <table class="table table-hover table-dark">
+        <tr>
+            <th>Class Name</th>
+            <th>Instructor</th>
+            <th>Weekday</th>
+            <th>Price</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td><a href="/details/{{course.id}}">{{course.name}}</a> <button><a
+                        href="/edit/{{course.id}}">Edit</a></button></td>
+            <td>{{course.Insturctor}}</td>
+            <td>{{course.day}}</td>
+            <td>${{course.number}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button><a href="new_course" id="new_course">+ New Course</a></button>
+
+</body>
+
+</html>
