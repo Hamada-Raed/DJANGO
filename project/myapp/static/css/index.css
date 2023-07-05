@@ -1,0 +1,47 @@
+*{
+    /* border: 1px solid red; */
+    margin: 0px;
+}
+/* container to whole contant in the page  */
+.container{
+    width: 80%;
+    margin: auto;
+    height: 100%;
+}
+/* Header contants a header name for the page and sign in link */
+header{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    margin: 0;
+}
+header a{
+    align-items: center;   
+}
+/* Navbar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #01324f;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+#signin{
+    border: 1px;
+}
+
+
