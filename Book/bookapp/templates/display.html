@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispaly</title>
+</head>
+
+<body>
+    <h1>Welcome, {{user.username}}</h1> 
+    <hr>
+    <div>
+        <a href="/logout"> LOGOUT</a>
+        <form action="/add_book/{{user.id}}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" name="title"></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><input type="text" name="desc"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add"></td>
+                </tr>
+            </table>
+        </form>
+        {% for book in books%}
+        <ul>
+            <li><a href="#">{{book.title}}</a></li>
+
+            <li>
+                <p>(added by {{book.user.username}})</p>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div id="error_messages">
+        {% if messages %}
+        <ul style="color: red; list-style-type: none;">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

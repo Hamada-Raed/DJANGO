@@ -22,7 +22,6 @@ def adding_n(request):
         last_name=request.POST['last'],
         dojo=Dojo.objects.get(id=request.POST['dojo']),
     )
-
     return redirect('/')
 
 def deleteDojo(request):
